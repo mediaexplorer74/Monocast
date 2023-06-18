@@ -22,7 +22,8 @@ The premier podcatcher :)
 (del AcrylicBrush, RadialProgressBar, etc.). 
 
 ## References
-- https://github.com/adderthorn/Monocast
+- https://github.com/adderthorn/Monocast Original Monocast app
+- https://github.com/adderthorn Noah Wood, Monocast Creator / Developer 
 
 ## ..
 As is. RnD only. DIY
