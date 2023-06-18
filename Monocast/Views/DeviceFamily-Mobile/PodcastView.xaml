@@ -7,8 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <!--<VisualStateManager.VisualStateGroups>
+        <!--RnD - begin-->
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
@@ -16,7 +18,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ContentContainer.Margin" Value="24,0"/>
-                        <Setter Target="EpisodeListView.MaxHeight" Value="1440"/>
+                        <Setter Target="EpisodeListView.MaxHeight" Value="250"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -39,7 +41,7 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}"/>
                     </VisualState.StateTriggers>
-                    <VisualState.Setters>
+                    <!--VisualState.Setters>
                         <Setter Target="ContentContainer.Margin" Value="12,0"/>
                         <Setter Target="DescWebView.(RelativePanel.Below)" Value="EpisodeListView"/>
                         <Setter Target="DescWebView.(RelativePanel.AlignLeftWith)" Value="EpisodeListView"/>
@@ -52,11 +54,13 @@
                         <Setter Target="StatusText.(RelativePanel.Above)" Value="DownloadButton"/>
                         <Setter Target="StatusText.(RelativePanel.AlignTopWith)" Value=""/>
                         <Setter Target="StatusText.(RelativePanel.AlignBottomWith)" Value=""/>
-                    </VisualState.Setters>
+                    </VisualState.Setters-->
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
-        <Grid.RowDefinitions>
+        </VisualStateManager.VisualStateGroups>
+        <!--RnD - end-->
+
+            <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -88,16 +92,19 @@
                      RelativePanel.Above="DownloadButton" MinHeight="100"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.RightOf="EpisodeListView"/>-->
+
+            <!--Padding="0,0,0,-170"-->
             <ListView x:Name="EpisodeListView" DisplayMemberPath="Title"
                       SelectionChanged="EpisodeListView_SelectionChanged"
                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       RelativePanel.Below="ArtworkContainer"
                       VerticalAlignment="Stretch"
-                      Padding="0,0,0,-170"
+                      Padding="0,0,0,0"
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True">
-                <ListViewItem>Sample</ListViewItem>
+               
+                    <ListViewItem>Sample</ListViewItem>
                 <ListViewItem>Sample</ListViewItem>
                 <ListViewItem>Sample</ListViewItem>
                 <ListViewItem>Sample</ListViewItem>

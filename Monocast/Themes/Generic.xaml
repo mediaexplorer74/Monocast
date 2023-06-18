@@ -270,11 +270,11 @@
                                                             Grid.Column="1"
                                                             FocusVisualMargin="-14,-6,-14,-6"
                                                             AutomationProperties.AccessibilityView="Raw">
-                                                            <ToolTipService.ToolTip>
+                                                            <!--ToolTipService.ToolTip>
                                                                 <ToolTip x:Name="ThumbnailTooltip">
                                                                     <ContentPresenter Content="{Binding}" />
                                                                 </ToolTip>
-                                                            </ToolTipService.ToolTip>
+                                                            </ToolTipService.ToolTip-->
                                                             <Thumb.DataContext>
                                                                 <Grid Height="112" Width="192">
                                                                     <Image x:Name="ThumbnailImage"/>
@@ -509,15 +509,20 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+                            
                             <!-- PlayPause states -->
                             <VisualStateGroup x:Name="PlayPauseStates">
                                 <VisualState x:Name="PlayState" />
                                 <VisualState x:Name="PauseState">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseSymbolLeft" Storyboard.TargetProperty="Symbol">
+                                        <ObjectAnimationUsingKeyFrames 
+                                            Storyboard.TargetName="PlayPauseSymbolLeft" 
+                                            Storyboard.TargetProperty="Symbol">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Pause" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseSymbol" Storyboard.TargetProperty="Symbol">
+                                        <ObjectAnimationUsingKeyFrames 
+                                            Storyboard.TargetName="PlayPauseSymbol"
+                                            Storyboard.TargetProperty="Symbol">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Pause" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -528,10 +533,14 @@
                                 <VisualState x:Name="VolumeState" />
                                 <VisualState x:Name="MuteState">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AudioMuteSymbol" Storyboard.TargetProperty="Symbol">
+                                        <ObjectAnimationUsingKeyFrames 
+                                            Storyboard.TargetName="AudioMuteSymbol" 
+                                            Storyboard.TargetProperty="Symbol">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Mute" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VolumeMuteSymbol" Storyboard.TargetProperty="Symbol">
+                                        <ObjectAnimationUsingKeyFrames 
+                                            Storyboard.TargetName="VolumeMuteSymbol" 
+                                            Storyboard.TargetProperty="Symbol">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Mute" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -542,7 +551,9 @@
                                 <VisualState x:Name="NonFullWindowState" />
                                 <VisualState x:Name="FullWindowState">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullWindowSymbol" Storyboard.TargetProperty="Symbol">
+                                        <ObjectAnimationUsingKeyFrames 
+                                            Storyboard.TargetName="FullWindowSymbol" 
+                                            Storyboard.TargetProperty="Symbol">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="BackToWindow" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -588,13 +599,16 @@
                                             <RowDefinition />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Slider x:Name="ProgressSlider"
+
+                                        <!--IsThumbToolTipEnabled="False"-->
+                                            <Slider x:Name="ProgressSlider"
                                             Style="{StaticResource MediaSliderStyle}"
                                             Margin="12,0"
                                             MinWidth="80"
                                             Height="33"
                                             VerticalAlignment="Center"
-                                            IsThumbToolTipEnabled="False" />
+                                             />
+                                        
                                         <ProgressBar x:Name="BufferingProgressBar"
                                             Height="4"
                                             IsIndeterminate="True"
@@ -620,10 +634,12 @@
                                         </Grid>
                                     </Grid>
                                 </Border>
+                                
                                 <Border x:Name="LeftSidePlayBorder"
                                     Grid.Column="0"
                                     Grid.Row="1"
                                     Visibility="Collapsed">
+                                    
                                     <AppBarButton x:Name="PlayPauseButtonOnLeft"
                                         Margin="0"
                                         VerticalAlignment="Center"
@@ -633,17 +649,25 @@
                                         </AppBarButton.Icon>
                                     </AppBarButton>
                                 </Border>
+                                
                                 <Border x:Name="MediaTransportControls_Command_Border"
                                     Grid.Column="1"
                                     Grid.Row="2">
-                                    <CommandBar x:Name="MediaControlsCommandBar" Margin="0,0" Style="{StaticResource CommandBarStyle}" IsDynamicOverflowEnabled="False">
+                                    
+                                    <CommandBar x:Name="MediaControlsCommandBar" Margin="0,0" 
+                                                Style="{StaticResource CommandBarStyle}" 
+                                                IsDynamicOverflowEnabled="False">
                                         <CommandBar.PrimaryCommands>
                                             <AppBarButton x:Name='VolumeMuteButton'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='19'>
+                                                
                                                 <AppBarButton.Flyout>
-                                                    <Flyout x:Name='VolumeFlyout' FlyoutPresenterStyle="{StaticResource FlyoutStyle}">
-                                                        <StackPanel Orientation="Horizontal" >
+                                                    <Flyout x:Name='VolumeFlyout' 
+                                                            FlyoutPresenterStyle="{StaticResource FlyoutStyle}">
+
+                                                        <!--IsThumbToolTipEnabled='False'-->
+                                                          <StackPanel Orientation="Horizontal" >
                                                             <AppBarButton x:Name='AudioMuteButton'
                                                                     Style='{StaticResource AppBarButtonStyle}'
                                                                     VerticalAlignment='Center'
@@ -655,7 +679,6 @@
                                                             </AppBarButton>
                                                             <Slider x:Name='VolumeSlider'
                                                           Value='50'
-                                                          IsThumbToolTipEnabled='False'
                                                           Width='{ThemeResource MTCHorizontalVolumeSliderWidth}'
                                                           VerticalAlignment='Center'
                                                           HorizontalAlignment='Center'
@@ -674,6 +697,7 @@
                                                     <SymbolIcon x:Name='VolumeMuteSymbol' Symbol='Volume' />
                                                 </AppBarButton.Icon>
                                             </AppBarButton>
+                                            
                                             <AppBarButton x:Name='CCSelectionButton'
                                               Style='{StaticResource AppBarButtonStyle}'
                                               MediaTransportControlsHelper.DropoutOrder='15'
@@ -682,6 +706,7 @@
                                                     <FontIcon Glyph="&#xED1E;"/>
                                                 </AppBarButton.Icon>
                                             </AppBarButton>
+                                            
                                             <AppBarButton x:Name='AudioTracksSelectionButton'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='13'
@@ -699,11 +724,13 @@
                                                 Height='0'
                                                 Width ='0'
                                                 Margin='0,0' />
+                                            
                                             <AppBarButton x:Name='StopButton'
                                                 Icon='Stop'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='7'
                                                 Visibility='Collapsed'/>
+                                            
                                             <AppBarButton x:Name='SkipBackwardButton'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='5'
@@ -712,11 +739,13 @@
                                                     <FontIcon Glyph="&#xED3C;"/>
                                                 </AppBarButton.Icon>
                                             </AppBarButton>
+                                            
                                             <AppBarButton x:Name='PreviousTrackButton'
                                                 Icon='Previous'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='3'
                                                 Visibility='Collapsed'/>
+                                            
                                             <AppBarButton x:Name='RewindButton'
                                               Style='{StaticResource AppBarButtonStyle}'
                                               MediaTransportControlsHelper.DropoutOrder='1'
@@ -725,6 +754,7 @@
                                                     <FontIcon Glyph="&#xEB9E;"/>
                                                 </AppBarButton.Icon>
                                             </AppBarButton>
+                                            
                                             <AppBarButton x:Name='PlayPauseButton'
                                                 Style='{StaticResource AppBarButtonStyle}'
                                                 MediaTransportControlsHelper.DropoutOrder='23'>

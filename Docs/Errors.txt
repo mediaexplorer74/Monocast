@@ -1,0 +1,14 @@
+   at Monocast.MainPage.<FinishLoading>d__40.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.<>c.<ThrowAsync>b__6_0(Object state)
+   at System.Threading.WinRTSynchronizationContext.Invoker.InvokeCore()
+
+Сборка начата…
+1>------ Сборка начата: проект: Microsoft.SyndicationFeed.ReaderWriter, Конфигурация: Debug Any CPU ------
+2>------ Сборка начата: проект: Monocast, Конфигурация: Debug ARM ------
+2>C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\MainPage.xaml(64,10): XamlCompiler warning WMC0151: Member 'PaneFooter' on type 'Windows.UI.Xaml.Controls.INavigationView' is defined under contract 'Windows.Foundation.UniversalApiContract' version '5.0.0.0', but the contract version for the targeted min version is '4.0.0.0'!
+2>C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\MainPage.xaml(70,22): XamlCompiler warning WMC0151: Type 'Windows.UI.Xaml.Controls.NavigationViewItem' is defined under contract 'Windows.Foundation.UniversalApiContract' version '5.0.0.0', but the contract version for the targeted min version is '4.0.0.0'!
+2>C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\MainPage.xaml.cs(157,82,157,84): warning CS1998: В данном асинхронном методе отсутствуют операторы await, поэтому метод будет выполняться синхронно. Воспользуйтесь оператором await для ожидания неблокирующих вызовов API или оператором await Task.Run(...) для выполнения связанных с ЦП заданий в фоновом потоке.
+2>C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\Controls\PodcastControl.xaml.cs(64,50,64,65): warning CS0067: Событие "PodcastControl.PropertyChanged" никогда не используется.
+2>C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\MainPage.xaml.cs(112,50,112,65): warning CS0067: Событие "MainPage.PropertyChanged" никогда не используется.
+2>  Monocast -> C:\Users\Admin\source\repos\!Podcasts\Monocast\Monocast\bin\ARM\Debug\Monocast.exe

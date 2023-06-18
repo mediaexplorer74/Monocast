@@ -28,11 +28,13 @@ namespace Monocast
                 bool foundPodcastNode = false;
                 while (reader.Read())
                 {
-                    if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals("Podcast", StringComparison.CurrentCultureIgnoreCase))
+                    if (reader.NodeType == XmlNodeType.Element && reader.Name.Equals(
+                        "Podcast", StringComparison.CurrentCultureIgnoreCase))
                     {
                         foundPodcastNode = true;
                     }
-                    else if (foundPodcastNode && reader.NodeType == XmlNodeType.Element && reader.Name.Equals("FeedUri", StringComparison.CurrentCultureIgnoreCase))
+                    else if (foundPodcastNode && reader.NodeType == XmlNodeType.Element 
+                        && reader.Name.Equals("FeedUri", StringComparison.CurrentCultureIgnoreCase))
                     {
                         if (reader.Read() && reader.NodeType == XmlNodeType.Text)
                         {
@@ -41,7 +43,8 @@ namespace Monocast
                             Subscriptions.AddPodcast(podcast);
                         }
                     }
-                    else if (foundPodcastNode && reader.NodeType == XmlNodeType.EndElement && reader.Name.Equals("Podcast", StringComparison.CurrentCultureIgnoreCase))
+                    else if (foundPodcastNode && reader.NodeType == XmlNodeType.EndElement 
+                        && reader.Name.Equals("Podcast", StringComparison.CurrentCultureIgnoreCase))
                     {
                         foundPodcastNode = false;
                     }

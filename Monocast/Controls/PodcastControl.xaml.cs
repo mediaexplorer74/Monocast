@@ -73,9 +73,16 @@ namespace Monocast.Controls
             return Podcast.Title;
         }
 
-        private void UnsubscribeMenuFlyoutItem_Click(object sender, RoutedEventArgs e) => this.UnsubscribePodcast?.Invoke(this, e);
+        private void UnsubscribeMenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.UnsubscribePodcast?.Invoke(this, e);
+        }
 
-        private void RaisePropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        private void RaisePropertyChanged(string name)
+        {
+            //RnD
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
         private void RaisePropertyChanged(params string[] names)
         {

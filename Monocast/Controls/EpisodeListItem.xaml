@@ -58,8 +58,11 @@ Visibility="{x:Bind ProgressBarVisibility, Mode=OneWay}"/>-->
                  Value="{x:Bind CompletedPct, Mode=OneWay}" 
                  Visibility="{x:Bind ProgressBarVisibility, Mode=OneWay}"
                  VerticalAlignment="Center"/>
-        
-        <TextBlock Text="{x:Bind TruncatedEpisodeTitle}" Margin="10,0,0,0" Grid.Row="0" Grid.Column="1" ToolTipService.ToolTip="{x:Bind Episode.Title}" VerticalAlignment="Center"
+
+        <!--ToolTipService.ToolTip="{x:Bind Episode.Title}" -->
+            <TextBlock Text="{x:Bind TruncatedEpisodeTitle}" Margin="10,0,0,0" 
+                   Grid.Row="0" Grid.Column="1" 
+                   VerticalAlignment="Center"
                    Foreground="{x:Bind TextColor, Mode=OneWay}"/>
         
     </Grid>

@@ -67,6 +67,7 @@ namespace Monocast
             }
         }
         public bool IsPlaybackAllowed => PlaybackService.Instance.MediaPlayer.Source != null;
+
         public string PlayPauseString => _PlayPauseSymbol == Symbol.Play ? "Play" : "Pause";
 
         public string SyncText
@@ -116,14 +117,20 @@ namespace Monocast
             this.Loaded += (sender, args) =>
             {
                 Current = this;
+
+                //RnD
                 FinishLoading();
             };
+
             App.CurrentDownloads = new List<DownloadControl>();
 
-            PlaybackService.Instance.MediaPlayer.PlaybackSession.PlaybackStateChanged += async (sender, e) =>
+            //async (sender, e)
+            PlaybackService.Instance.MediaPlayer.PlaybackSession.PlaybackStateChanged +=  (sender, e) 
+                =>
             {
                 /* TODO: Add enablement here. */
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                //await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                //    CoreDispatcherPriority.Normal, () =>
                 {
                     switch (sender.PlaybackState)
                     {
@@ -135,18 +142,26 @@ namespace Monocast
                             PlayPauseSymbol = Symbol.Play;
                             break;
                     }
-                });
+                } //);
             };
-            PlaybackService.Instance.MediaPlayer.MediaOpened += async (sender, e) =>
+
+            //async
+            PlaybackService.Instance.MediaPlayer.MediaOpened += (sender, e) =>
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher
-                    .RunAsync(CoreDispatcherPriority.Normal, () => RaisePropertyChanged(nameof(IsPlaybackAllowed)));
+                //await CoreApplication.MainView.CoreWindow.Dispatcher
+                //    .RunAsync(CoreDispatcherPriority.Normal, 
+                //() => 
+                // RaisePropertyChanged(nameof(IsPlaybackAllowed))//);
+                RaisePropertyChanged("IsPlaybackAllowed");
             };
             PlaybackService.Instance.MediaPlayer.MediaEnded += async (sender, e) =>
             {
                 //sender.Source = null;
-                await CoreApplication.MainView.CoreWindow.Dispatcher
-                    .RunAsync(CoreDispatcherPriority.Normal, () => RaisePropertyChanged(nameof(IsPlaybackAllowed)));
+                //await CoreApplication.MainView.CoreWindow.Dispatcher
+                //   .RunAsync(CoreDispatcherPriority.Normal, () 
+                //   => 
+                //   RaisePropertyChanged(nameof(IsPlaybackAllowed)) //);
+                RaisePropertyChanged("IsPlaybackAllowed");
             };
             // TODO: Fix go back
             //KeyboardAccelerator GoBack = new KeyboardAccelerator();
@@ -160,15 +175,25 @@ namespace Monocast
             //this.KeyboardAccelerators.Add(AltLeft);
         }
 
-        private void RaisePropertyChanged(string PropertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        private void RaisePropertyChanged(string PropertyName)
+        {
+            //RnD
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
         private void RaisePropertyChanged(params string[] PropertyNames)
         {
             for (int i = 0; i < PropertyNames.Length; i++)
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyNames[i]));
+            {
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyNames[i]));
+            }
         }
+
+        //RnD
         private async void FinishLoading()
         {
             NavigationViewItem itemToNavigateTo = AddFeedItem;
+
             if (Subscriptions == null)
             {
                 AppData appData = new AppData(Utilities.SUBSCRIPTION_FILE, FolderLocation.Roaming);
@@ -183,7 +208,8 @@ namespace Monocast
                     catch (SerializationException ex)
                     {
                         MemoryStream stream = await appData.LoadFromFileAsync();
-                        if (ex.Message.Contains(VersionConverter.OLD_NAMESPACE) && stream != Stream.Null)
+                        if (ex.Message.Contains(VersionConverter.OLD_NAMESPACE) 
+                            && stream != Stream.Null)
                         {
                             stream.Seek(0, SeekOrigin.Begin);
                             VersionConverter versionConverter = new VersionConverter();
@@ -209,12 +235,22 @@ namespace Monocast
                     App.Subscriptions = new Subscriptions();
                 }
             }
-            itemToNavigateTo.IsSelected = true;
-            if (Settings.SyncOnLaunch) SyncButton_Click(new object(), new TappedRoutedEventArgs());
-            if (Subscriptions.Podcasts.Count > 0 && Settings.CachePodcastArtwork) await Subscriptions.RefreshPodcastArtworkAsync();
-            await Subscriptions.GetLocalImagesAsync();
-        }
 
+            //RnD
+            //itemToNavigateTo.IsSelected = true;
+
+            if (Settings.SyncOnLaunch) SyncButton_Click(new object(), new TappedRoutedEventArgs());
+
+            if (Subscriptions.Podcasts.Count > 0 && Settings.CachePodcastArtwork)
+            {
+                await Subscriptions.RefreshPodcastArtworkAsync();
+            }
+
+            await Subscriptions.GetLocalImagesAsync();
+        }//FinishLoading
+
+
+        // OnNavigatedTo
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is Uri)
@@ -225,7 +261,8 @@ namespace Monocast
         }
 
         #region Back Requested Handlers
-        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        private void NavView_BackRequested(NavigationView sender, 
+            NavigationViewBackRequestedEventArgs args)
         {
             bool empty = false;
             BackRequested(ref empty);
@@ -242,7 +279,8 @@ namespace Monocast
         }
         #endregion
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs e)
+        private void NavView_SelectionChanged(NavigationView sender, 
+            NavigationViewSelectionChangedEventArgs e)
         {
             if (e.IsSettingsSelected)
             {
@@ -280,7 +318,8 @@ namespace Monocast
             {
                 SyncText = ex.Message;
 #if DEBUG
-                throw;
+                //throw;
+                Debug.WriteLine("[ex] Exception: " + ex.Message);
 #endif
             }
             finally

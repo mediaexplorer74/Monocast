@@ -15,43 +15,48 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource LargeWindowSnapPoint}"/>
+                        <!--{StaticResource LargeWindowSnapPoint}-->
+                            <AdaptiveTrigger MinWindowWidth="100"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ArtworkImg.Width" Value="150"/>
-                        <Setter Target="ArtworkImg.Height" Value="150"/>
-                        <Setter Target="EpisodeListView.Width" Value="400"/>
-                        <Setter Target="EpisodeListView.MaxWidth" Value="400"/>
+                        <Setter Target="ArtworkImg.Width" Value="50"/>
+                        <Setter Target="ArtworkImg.Height" Value="50"/>
+                        <Setter Target="EpisodeListView.Width" Value="133"/>
+                        <Setter Target="EpisodeListView.MaxWidth" Value="133"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!--{StaticResource MediumWindowSnapPoint}-->
+                        <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="100"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="EpisodeListView.Width" Value="150"/>
+                        <Setter Target="EpisodeListView.MaxWidth" Value="150"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowSnapPoint}"/>
+                        <!--{StaticResource MedPhoneSizeSnapPoint}-->
+                            <AdaptiveTrigger MinWindowHeight="100"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="EpisodeListView.Width" Value="300"/>
-                        <Setter Target="EpisodeListView.MaxWidth" Value="300"/>
+                        <Setter Target="EpisodeListView.MaxHeight" Value="150"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowHeight="{StaticResource MedPhoneSizeSnapPoint}"/>
+                        <!--{StaticResource LargePhoneSizeSnapPoint}-->
+                            <AdaptiveTrigger MinWindowHeight="100"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="EpisodeListView.MaxHeight" Value="300"/>
+                        <Setter Target="EpisodeListView.MaxHeight" Value="133"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowHeight="{StaticResource LargePhoneSizeSnapPoint}"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="EpisodeListView.MaxHeight" Value="400"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}"/>
+                        <!--{StaticResource MinWindowSnapPoint}-->
+                            <AdaptiveTrigger MinWindowWidth="100"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ContentContainer.Margin" Value="12,0"/>
@@ -73,10 +78,12 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="0"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <RelativePanel x:Name="ContentContainer" Grid.Row="1">
             <Border BorderThickness="1" Height="{Binding ElementName=ArtworkImg, Path=Height}"
                     Width="{Binding ElementName=ArtworkImg, Path=Width}" x:Name="ArtworkContainer"
@@ -89,40 +96,50 @@
                     </Image.Source>
                 </Image>
             </Border>
+            
             <StackPanel Orientation="Vertical" x:Name="TitlePanel" Margin="10"
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.AlignBottomWith="ArtworkContainer"
                         RelativePanel.RightOf="ArtworkContainer">
+               
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="TitleText"
                            Text="{x:Bind Title, Mode=OneWay}" Margin="0,5"
                            FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+               
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="EpisodeTitleTextControl"
                            Text="{x:Bind EpisodeTitle, Mode=OneWay}" Margin="0,5" TextWrapping="WrapWholeWords"/>
+               
                 <TextBlock Text="{x:Bind PublishedDateString, Mode=OneWay}"
                                Visibility="{x:Bind PublishedVisibility, Mode=OneWay}" Margin="5,0" FontStyle="Italic"
                                TextWrapping="WrapWholeWords"/>
+               
                 <StackPanel Orientation="Horizontal" Visibility="{x:Bind PublishedVisibility, Mode=OneWay}">
                     <TextBlock Text="Duration:" Margin="3"/>
                     <TextBlock Text="{x:Bind DurationString, Mode=OneWay}" Margin="3"/>
                 </StackPanel>
             </StackPanel>
+            
             <WebView x:Name="DescWebView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                      RelativePanel.Below="TitlePanel" Margin="0,0,0,2"
                      RelativePanel.Above="DownloadButton" MinHeight="100"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.RightOf="EpisodeListViewContainer"
                      NavigationStarting="DescWebView_NavigationStarting"/>
+            
             <Grid x:Name="EpisodeListViewContainer"
                   RelativePanel.AlignLeftWithPanel="True" VerticalAlignment="Stretch"
                   RelativePanel.AlignBottomWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                
                 <Grid BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" BorderThickness="0,0,0,1" Grid.Row="0"
                       MaxWidth="{Binding ElementName=EpisodeListView, Path=MaxWidth}" Background="{Binding ElementName=ActionsCommandBar, Path=Background}">
+                    
                     <Grid.Resources>
                         <Storyboard x:Name="SelectionEase">
                             <DoubleAnimation Storyboard.TargetName="TranslateIn" Storyboard.TargetProperty="X"
@@ -133,44 +150,68 @@
                             </DoubleAnimation>
                         </Storyboard>
                     </Grid.Resources>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="AUto"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" 
+                                Grid.Column="1" HorizontalAlignment="Right">
                         <SymbolIcon Symbol="View"/>
-                        <TextBlock Text="Show Archived" VerticalAlignment="Center" Margin="10,0"/>
-                        <ToggleSwitch x:Name="ShowArchivedToggle" HorizontalAlignment="Right" Width="90" IsOn="{x:Bind ShowArchived, Mode=TwoWay}" />
+                        <TextBlock Text="Show Archived" 
+                                   VerticalAlignment="Center" Margin="10,0"/>
+                        <ToggleSwitch x:Name="ShowArchivedToggle"
+                                      HorizontalAlignment="Right" Width="90" IsOn="{x:Bind ShowArchived, Mode=TwoWay}" />
                     </StackPanel>
-                    <CheckBox x:Name="EpisodesAllCheckBox" Margin="5,0,-95,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"
+                    <CheckBox x:Name="EpisodesAllCheckBox" Margin="5,0,-95,0" 
+                              VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"
                               Visibility="{x:Bind EpisodesCheckBoxVisibility, Mode=OneWay}"
-                              IsThreeState="True" Checked="EpisodesAllCheckBox_Checked" Unchecked="EpisodesAllCheckBox_Unchecked" Indeterminate="EpisodesAllCheckBox_Indeterminate"
+                              IsThreeState="True" Checked="EpisodesAllCheckBox_Checked" 
+                              Unchecked="EpisodesAllCheckBox_Unchecked" Indeterminate="EpisodesAllCheckBox_Indeterminate"
                               Background="{Binding ElementName=ActionsCommandBar, Path=Background}">
                         <CheckBox.RenderTransform>
                             <TranslateTransform x:Name="TranslateIn"/>
                         </CheckBox.RenderTransform>
                     </CheckBox>
-                    <!--<TextBlock Text="{x:Bind Title, Mode=OneWay}" VerticalAlignment="Center" FontWeight="Bold" Margin="2" Grid.Column="1"/>-->
-                    <CommandBar x:Name="ActionsCommandBar" Grid.Column="1" Grid.Row="1" OverflowButtonVisibility="Collapsed" FlowDirection="RightToLeft" HorizontalAlignment="Right">
-                        <AppBarToggleButton x:Name="SelectionToggleButton" Icon="Bullets" ToolTipService.ToolTip="Enter selection mode"
-                                            Checked="SelectionToggleButton_Toggle" Unchecked="SelectionToggleButton_Toggle"/>
-                        <AppBarButton Icon="Accept" Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" Click="MarkEpisodePlayed_Click"
-                                      ToolTipService.ToolTip="Mark Episode as Played"/>
-                        <AppBarButton Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" Click="MarkEpisodeArchived_Click"
-                                      ToolTipService.ToolTip="Archive Episode">
+                    <!--<TextBlock Text="{x:Bind Title, Mode=OneWay}" VerticalAlignment="Center" 
+                    FontWeight="Bold" Margin="2" Grid.Column="1"/>-->
+                    <CommandBar x:Name="ActionsCommandBar" Grid.Column="1" 
+                                Grid.Row="1" OverflowButtonVisibility="Collapsed" 
+                                FlowDirection="RightToLeft" HorizontalAlignment="Right">
+
+                        <!-- ToolTipService.ToolTip="Enter selection mode"  -->
+                            <AppBarToggleButton x:Name="SelectionToggleButton" Icon="Bullets" 
+                                        Checked="SelectionToggleButton_Toggle" 
+                                                Unchecked="SelectionToggleButton_Toggle"/>
+
+                        <!--ToolTipService.ToolTip="Mark Episode as Played"-->
+                            <AppBarButton Icon="Accept" 
+                                          Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" 
+                                      Click="MarkEpisodePlayed_Click"
+                                      />
+
+                        <!--ToolTipService.ToolTip="Archive Episode"-->
+                            <AppBarButton Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" 
+                                      Click="MarkEpisodeArchived_Click"
+                                      >
                             <AppBarButton.Content>
                                 <Viewbox Stretch="Uniform">
                                     <PathIcon Data="{StaticResource ArchiveIcon}"/>
                                 </Viewbox>
                             </AppBarButton.Content>
                         </AppBarButton>
-                        <AppBarButton Icon="Pin" Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" Click="PinEpisode_Click"
-                                      ToolTipService.ToolTip="Pin Episode"/>
+
+                        <!--ToolTipService.ToolTip="Pin Episode"-->
+                            <AppBarButton Icon="Pin" Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" 
+                                      Click="PinEpisode_Click"
+                                      />
                         <!--<AppBarButton Icon="Download" Visibility="{x:Bind IsEpisodeSelected, Mode=OneWay}" Click="DownloadButton_Click"/>-->
                     </CommandBar>
                 </Grid>
@@ -182,7 +223,8 @@
                     <ListViewItem>Placeholder That is longer than normal</ListViewItem>
                 </ListView>
             </Grid>
-            <Button x:Name="DownloadButton" Margin="10,0,0,20" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            <Button x:Name="DownloadButton" Margin="10,0,0,20" HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"
                     Click="DownloadButton_Click" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.RightOf="EpisodeListViewContainer">
                 <Button.Content>
@@ -193,8 +235,10 @@
                 </Button.Content>
             </Button>
             <Button x:Name="EpisodeButton" Margin="10,0,0,20"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PlayButton_Click"
-                    RelativePanel.AlignBottomWith="DownloadButton" RelativePanel.RightOf="DownloadButton"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                    Click="PlayButton_Click"
+                    RelativePanel.AlignBottomWith="DownloadButton" 
+                    RelativePanel.RightOf="DownloadButton"
                     IsEnabled="{Binding ElementName=DownloadButton, Path=IsEnabled}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">

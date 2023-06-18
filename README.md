@@ -1,5 +1,5 @@
-# Monocast 2.1.0
-A UWP Podcast client for Windows 10.
+# Monocast 2.1.2-alpha
+A UWP Podcast client for Windows 10 (Mobile?)
 
 ## About
 The premier podcatcher :)
@@ -15,7 +15,10 @@ The premier podcatcher :)
 - MVVM
 - MediaPlayer Background Task :)
 
-## ToDO
+## Bugs
+- W10M has big problems. On my Lumia 950 (15242) i catched "empty black screen" after app end to start... :)
+
+## TODO
 - Go to my secont workstation. 
 - Start (VS2017), attach real W10M device 
 (L950, W10M build 16063) and debug Monocast UI 

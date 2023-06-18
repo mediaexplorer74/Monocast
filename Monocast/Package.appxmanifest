@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
-  <Identity Name="ME.MonocastV1" Publisher="CN=Admin" Version="2.1.0.0" />
-  <mp:PhoneIdentity PhoneProductId="980d43df-63dd-4ebe-92ae-596d9a0e108f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="ME.MonocastV1" Publisher="CN=Admin" Version="2.1.2.0" />
+  <mp:PhoneIdentity PhoneProductId="984d43df-6333-4ebe-92ae-59949a0e109f" PhonePublisherId="01212005-0340-0480-0004-760003300093" />
   <Properties>
     <DisplayName>Monocast</DisplayName>
     <PublisherDisplayName>mediaexplorer</PublisherDisplayName>

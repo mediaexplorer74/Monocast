@@ -6,26 +6,49 @@
     xmlns:controls="using:Monocast.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    TabNavigation="Cycle">
-    <Page.Resources>
+    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
+    TabNavigation="Cycle"
+    >
+    
+        <Page.Resources>
         <Storyboard x:Name="SyncRotateIcon" AutoReverse="False" RepeatBehavior="Forever">
-            <DoubleAnimation Duration="0:0:1" To="360" Storyboard.TargetName="SyncIcon"
-                            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"/>
+
+         <!--Storyboard.TargetName="SyncIcon"-->
+         <DoubleAnimation Duration="0:0:1" To="360" 
+           Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"/>
         </Storyboard>
     </Page.Resources>
-    <NavigationView x:Name="NavView" Header="{x:Bind CurrentHeader, Mode=OneWay}" Padding="0" AlwaysShowHeader="True"
-                    BackRequested="NavView_BackRequested" IsBackEnabled="{x:Bind AppFrame.CanGoBack, Mode=OneWay}"
-                    SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="True">
-        <NavigationView.MenuItems>
-            
-            <NavigationViewItem x:Name="NowPlayingItem" Content="Now Playing" Icon="Volume" IsEnabled="{x:Bind IsPlaybackAllowed, Mode=OneWay}"
+    
+    <Windows10FallCreatorsUpdate:NavigationView x:Name="NavView" 
+                                                Header="{x:Bind CurrentHeader, Mode=OneWay}" 
+                   Padding="0" AlwaysShowHeader="True"
+                   SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="True">
+        <Windows10FallCreatorsUpdate:NavigationView.MenuItems>
+
+            <!--IsEnabled="{x:Bind IsPlaybackAllowed, Mode=OneWay}" -->
+            <Windows10FallCreatorsUpdate:NavigationViewItem x:Name="NowPlayingItem" 
+                                Content="Now Playing" Icon="Volume" 
                                 Tag="Monocast.Views.PlayerView"/>
-            <NavigationViewItem x:Name="CurrentItem" Content="Current Episode" Icon="Microphone" Tag="Monocast.Views.PodcastView" IsEnabled="{x:Bind IsCurrentEpisodeAvailable, Mode=OneWay}"
-                                IsSelected="{x:Bind IsCurrentSelected, Mode=TwoWay}"/>
-            <NavigationViewItem x:Name="LibraryItem" Content="My Subscriptions" Icon="Library" Tag="Monocast.Views.SubscriptionView"/>
-            <NavigationViewItem x:Name="DownloadsItem" Content="Current Downloads" Icon="Download" Tag="Monocast.Views.DownloadView"/>
-            <NavigationViewItem x:Name="AddFeedItem" Content="Subscribe To New" Icon="Add" Tag="Monocast.Views.AddFeedView"/>
-        </NavigationView.MenuItems>
+
+            <!--
+            IsEnabled="{x:Bind IsCurrentEpisodeAvailable, Mode=OneWay}"
+            IsSelected="{x:Bind IsCurrentSelected, Mode=TwoWay}"
+            -->
+            <Windows10FallCreatorsUpdate:NavigationViewItem x:Name="CurrentItem" 
+                                                            Content="Current Episode" 
+                                Icon="Microphone" Tag="Monocast.Views.PodcastView" 
+                                />
+            <Windows10FallCreatorsUpdate:NavigationViewItem x:Name="LibraryItem" 
+                                                            Content="My Subscriptions" 
+                                Icon="Library" Tag="Monocast.Views.SubscriptionView"/>
+            <Windows10FallCreatorsUpdate:NavigationViewItem x:Name="DownloadsItem" 
+                                                            Content="Current Downloads"
+                                Icon="Download" Tag="Monocast.Views.DownloadView"/>
+            <Windows10FallCreatorsUpdate:NavigationViewItem x:Name="AddFeedItem" 
+                                                            Content="Subscribe To New" 
+                                Icon="Add" Tag="Monocast.Views.AddFeedView"/>
+        </Windows10FallCreatorsUpdate:NavigationView.MenuItems>
+        
         <Frame x:Name="frame" Navigated="Frame_Navigated">
             <Frame.ContentTransitions>
                 <TransitionCollection>
@@ -37,27 +60,44 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
+        
         <NavigationView.PaneFooter>
             <StackPanel>
-                <NavigationViewItem x:Name="PlayPauseButton" Tapped="PlayPauseButton_Tapped" IsEnabled="{x:Bind IsPlaybackAllowed, Mode=OneWay}"
-                                    ToolTipService.ToolTip="{x:Bind PlayPauseString, Mode=OneWay}" Content="{x:Bind PlayPauseString, Mode=OneWay}">
-                    <NavigationViewItem.Icon>
+                <!--IsEnabled="{x:Bind IsPlaybackAllowed, Mode=OneWay}"
+                ToolTipService.ToolTip="{x:Bind PlayPauseString, Mode=OneWay}" 
+                Content="{x:Bind PlayPauseString, Mode=OneWay}"
+                -->
+                    <NavigationViewItem x:Name="PlayPauseButton" 
+                                        Tapped="PlayPauseButton_Tapped" 
+                                        Content="Play/Pause"
+                                        IsEnabled="True"
+                                    >
+                    <!--NavigationViewItem.Icon>
                         <SymbolIcon Symbol="{x:Bind PlayPauseSymbol, Mode=OneWay}"/>
-                    </NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon-->
                 </NavigationViewItem>
-                <NavigationViewItem x:Name="SyncButton" Tapped="SyncButton_Click" x:Uid="SyncButton"
-                                    Content="{x:Bind SyncText, Mode=OneWay}">
-                    <NavigationViewItem.Icon>
+
+                <!--Content="{x:Bind SyncText, Mode=OneWay}"-->
+                    <NavigationViewItem x:Name="SyncButton" 
+                                        Tapped="SyncButton_Click" 
+                                        x:Uid="SyncButton"
+                                        Content="Sync text"
+                                    >
+                        
+                    <!--NavigationViewItem.Icon>
                         <SymbolIcon x:Name="SyncIcon" Symbol="Refresh" VerticalAlignment="Center"
                                     RenderTransformOrigin="0.5,0.5">
                             <SymbolIcon.RenderTransform>
                                 <CompositeTransform/>
                             </SymbolIcon.RenderTransform>
                         </SymbolIcon>
-                    </NavigationViewItem.Icon>
+                    </NavigationViewItem.Icon-->
                 </NavigationViewItem>
-                <Rectangle Height="1" Margin="16,0,16,6" Fill="{ThemeResource SystemControlForegroundBaseLowBrush}"/>
+
+                <!--RnD-->
+                    <!--Rectangle Height="1" Margin="16,0,16,6" 
+                           Fill="{ThemeResource SystemControlForegroundBaseLowBrush}"/-->
             </StackPanel>
         </NavigationView.PaneFooter>
-    </NavigationView>
+    </Windows10FallCreatorsUpdate:NavigationView>
 </Page>

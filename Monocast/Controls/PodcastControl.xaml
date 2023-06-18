@@ -6,7 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="160">
-    <Grid Width="200" ToolTipService.ToolTip="{x:Bind ToolTip, Mode=OneWay}">
+
+                     <!--ToolTipService.ToolTip="{x:Bind ToolTip, Mode=OneWay}"-->
+        <Grid Width="200" 
+          >
         <Grid.ContextFlyout>
             <MenuFlyout>
                 <MenuFlyoutItem Text="Mark All Played" Click="MarkAllPlayed_Click"/>
@@ -31,7 +34,8 @@
         <Border BorderThickness="1" BorderBrush="{StaticResource ApplicationSecondaryForegroundThemeBrush}"
                 Height="{Binding ElementName=ArtworkImg, Path=Height}" Grid.Row="1"
                 Width="{Binding ElementName=ArtworkImg, Path=Width}" Grid.Column="0">
-            <Image x:Name="ArtworkImg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75">
+            <Image x:Name="ArtworkImg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" 
+                   Height="75">
                 <Image.Source>
                     <BitmapImage UriSource="{x:Bind ArtworkSource, Mode=OneTime}" DecodePixelHeight="75"
                                  DecodePixelWidth="75" DecodePixelType="Logical"/>

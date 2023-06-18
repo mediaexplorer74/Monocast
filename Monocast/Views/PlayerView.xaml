@@ -15,8 +15,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowSnapPoint}"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="NotificationGrid.Height" Value="400"/>
-                        <Setter Target="PlayPauseViewbox.MaxHeight" Value="200"/>
+                        <Setter Target="NotificationGrid.Height" Value="200"/>
+                        <Setter Target="PlayPauseViewbox.MaxHeight" Value="100"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
