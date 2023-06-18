@@ -1,4 +1,6 @@
-﻿using System;
+﻿// EpisodeView
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.ComponentModel;
@@ -16,13 +18,10 @@ using System.Net.NetworkInformation;
 using Windows.Storage.AccessCache;
 using Windows.System;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Monocast.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    
     public sealed partial class EpisodeView : Page, INotifyPropertyChanged
     {
         private Episode _Episode;
@@ -46,7 +45,8 @@ namespace Monocast.Views
         {
             get
             {
-                if (_Episode?.PublishDate != null && _Episode.PublishDate != DateTime.MinValue)
+                if (_Episode?.PublishDate != null 
+                    && _Episode.PublishDate != DateTime.MinValue.ToUniversalTime())
                 {
                     return _Episode.PublishDate.ToString("D");
                 }

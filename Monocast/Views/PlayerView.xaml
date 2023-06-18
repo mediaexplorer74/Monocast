@@ -50,9 +50,9 @@
             <Rectangle Width="{Binding ElementName=NotificationGrid, Path=Width}"
                        Height="{Binding ElementName=NotificationGrid, Path=Height}"
                        UseLayoutRounding="True">
-                <Rectangle.Fill>
+                <!--Rectangle.Fill>
                     <AcrylicBrush Opacity="0.8" TintColor="#FF1D1D1D"/>
-                </Rectangle.Fill>
+                </Rectangle.Fill-->
                 <Rectangle.Stroke>
                     <SolidColorBrush Color="Black"/>
                 </Rectangle.Stroke>

@@ -256,7 +256,8 @@ namespace Monosoftware.Podcast
                 if (value != _PlaybackPosition.Ticks)
                 {
                     _PlaybackPosition = new TimeSpan(value);
-                    raiseNotifyPropertyChanged(nameof(PlaybackPosition), nameof(PlaybackPositionLong));
+                    raiseNotifyPropertyChanged(nameof(PlaybackPosition), 
+                        nameof(PlaybackPositionLong));
                 }
             }
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// PodcastView
+
+using System;
 using System.ComponentModel;
 using Monosoftware.Podcast;
 using Monocast.Controls;
@@ -24,9 +26,7 @@ using Monocast.Services;
 
 namespace Monocast.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    
     public sealed partial class PodcastView : Page, INotifyPropertyChanged
     {
         private const double MAX_WIDTH = 100;
@@ -106,8 +106,15 @@ namespace Monocast.Views
         {
             get
             {
-                if (SelectedEpisode?.PublishDate == null) return PUBLISHED_STRING + Utilities.UNKNOWN;
-                if (SelectedEpisode?.PublishDate == DateTime.MinValue) return PublishedDateString + Utilities.UNKNOWN;
+                if (SelectedEpisode?.PublishDate == null)
+                {
+                    return PUBLISHED_STRING + Utilities.UNKNOWN;
+                }
+                if (SelectedEpisode?.PublishDate == DateTime.MinValue.ToUniversalTime())
+                {
+                    return PublishedDateString + Utilities.UNKNOWN;
+                }
+
                 return PUBLISHED_STRING + SelectedEpisode?.PublishDate.ToString("D");
             }
         }

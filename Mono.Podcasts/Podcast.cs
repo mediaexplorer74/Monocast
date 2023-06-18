@@ -75,8 +75,8 @@ namespace Monosoftware.Podcast
         #region Private Variables
         private const int DEFAULT_MAX_EPISODES = 20;
 
-        private DateTime _LastBuildDate = DateTime.MinValue;
-        private DateTime _LastRefreshDate = DateTime.MinValue;
+        private DateTime _LastBuildDate = DateTime.MinValue.ToUniversalTime();
+        private DateTime _LastRefreshDate = DateTime.MinValue.ToUniversalTime();
         private int _MaxEpisodes = DEFAULT_MAX_EPISODES;
         private string _Title;
         private Uri _FeedUri;
@@ -493,7 +493,8 @@ namespace Monosoftware.Podcast
 
         public void AddEpisodeFromSyndicationContent(ISyndicationContent syndicationContent, int InsertIndex)
         {
-            ISyndicationItem item = new RssParser(AllowNullLinks: true).CreateItem(syndicationContent);
+            // RnD: RssParser(AllowNullLinks: true)
+            ISyndicationItem item = new RssParser().CreateItem(syndicationContent);
             if (this.Episodes.Count(e => string.Equals(e.Title, item.Title.Trim(), StringComparison.OrdinalIgnoreCase) && e.PublishDate == item.Published) > 0) return;
             Episode episode = new Episode(this)
             {
@@ -719,7 +720,7 @@ namespace Monosoftware.Podcast
                                 }
                                 catch
                                 {
-                                    buildDate = DateTime.MinValue;
+                                    buildDate = DateTime.MinValue.ToUniversalTime();
                                 }
                                 podcast.LastBuildDate = buildDate;
                             }
